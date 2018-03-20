@@ -1,0 +1,7 @@
+<h1>Technologies</h1>
+<mat-card *ngFor="let tech of techs$ | async" fxLayoutAlign="space-between center">
+  <span>{{tech.name}}</span> <span>{{tech | json}}</span>
+  <button mat-button [routerLink]="['/tech-edit', tech.$key]">Edit</button>
+</mat-card>
+<button mat-fab [routerLink]="['/tech-edit/new']"><mat-icon>add</mat-icon></button>
+

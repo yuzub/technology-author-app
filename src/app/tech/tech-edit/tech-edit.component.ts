@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { TechService } from './tech.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Tech } from '../tech';
 
 @Component({
   selector: 'taa-tech-edit',
@@ -8,13 +11,43 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./tech-edit.component.css']
 })
 export class TechEditComponent implements OnInit {
+  isNewTech: boolean;
+  techKey: string;
   tech$: Observable<any>;
 
-  constructor(private db: AngularFireDatabase) {
-    this.tech$ = this.db.object('tech').valueChanges();
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private techService: TechService) {
+    // this.tech$ = techService.tech$;
   }
 
   ngOnInit() {
+    this.techKey = this.activatedRoute.snapshot.params['id'];
+    this.isNewTech = this.techKey === 'new';
+    !this.isNewTech ? this.getTech() : this.tech$ = Observable.of({}) as Observable<Tech>
+  }
+
+  getTech() {
+    this.tech$ = this.techService.getTech(this.techKey);
+  }
+
+  saveTech(tech) {
+    this.isNewTech ?
+      this.techService.addTech(tech) :
+      this.techService.updateTech(this.techKey, tech);
+  }
+
+  // addTech(tech) {
+  //   this.techService.addTech(tech);
+  // }
+
+  // updateTech(tech) {
+  //   this.techService.updateTech(this.techKey, tech);
+  // }
+
+  deleteTech() {
+    this.techService.deleteTech(this.techKey);
   }
 
 }

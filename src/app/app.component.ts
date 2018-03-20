@@ -16,9 +16,9 @@ export class AppComponent {
     this.connected
       .take(2)
       .subscribe(
-        value => console.log(`next - got value ${value}`),
-        error => console.log(`error - something wrong occurred: ${error}`),
-        () => console.log(`completed`)
+        value => console.log(`connected next - got value ${value}`),
+        error => console.log(`connected error - something wrong occurred: ${error}`),
+        () => console.log(`connected completed`)
       );
   }
 }

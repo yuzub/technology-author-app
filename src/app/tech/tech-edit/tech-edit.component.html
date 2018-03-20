@@ -1,1 +1,12 @@
+<h1>Technology Edit</h1>
+<mat-card *ngIf="tech$ | async as tech">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="tech.name">
+  </mat-form-field>
+  <mat-card-actions>
+    <button mat-raised-button (click)="saveTech(tech)">Save</button>
+    <button mat-raised-button (click)="deleteTech(tech)" color="accent">Delete</button>
+  </mat-card-actions>
+</mat-card>
+
 {{tech$ | async | json}}

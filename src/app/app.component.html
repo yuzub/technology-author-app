@@ -1,22 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="mat-app-background">
   <mat-toolbar color="primary" class="toolbar">
-    <span>AngularFire</span>
+    <div fxLayoutAlign="space-between center" class="nav-buttons-bar">
+      <span>Web Technologies</span>
+      <button mat-button [routerLink]="['/tech-list']">Technologies</button>
+    </div>
+
   </mat-toolbar>
   <div>
     <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
-      <taa-tech-edit></taa-tech-edit>
       <router-outlet></router-outlet>
-
-      <h3>Raised Buttons</h3>
-      <div class="button-row">
-        <button mat-raised-button>Basic</button>
-        <button mat-raised-button color="primary">Primary</button>
-        <button mat-raised-button color="accent">Accent</button>
-        <button mat-raised-button color="warn">Warn</button>
-        <button mat-raised-button disabled>Disabled</button>
-        <a mat-raised-button routerLink=".">Link</a>
-      </div>
     </div>
   </div>
 </div>
