@@ -33,9 +33,11 @@ export class TechEditComponent implements OnInit {
   }
 
   saveTech(tech) {
-    this.isNewTech ?
-      this.techService.addTech(tech) :
-      this.techService.updateTech(this.techKey, tech);
+    const save = this.isNewTech
+      ? this.techService.addTech(tech)
+      : this.techService.updateTech(tech);
+
+      save.then(_ => this.router.navigate(['/tech-list']))
   }
 
   // addTech(tech) {
@@ -43,11 +45,12 @@ export class TechEditComponent implements OnInit {
   // }
 
   // updateTech(tech) {
-  //   this.techService.updateTech(this.techKey, tech);
+  //   this.techService.updateTech(tech);
   // }
 
-  deleteTech() {
-    this.techService.deleteTech(this.techKey);
+  deleteTech(tech) {
+    this.techService.deleteTech(tech)
+      .then(_ => this.router.navigate(['/tech-list']));
   }
 
 }

@@ -23,7 +23,8 @@ export class TechService {
 
   // working with FireBase List
   getTech(techKey: string) {
-    return this.db.object(`techs/${techKey}`).valueChanges();
+    // return this.db.object(`techs/${techKey}`).valueChanges();
+    return this.db.object(`techs/${techKey}`).snapshotChanges().map(c => ({ $key: c.payload.key, ...c.payload.val() }));
   }
 
   getTechs() {
@@ -31,19 +32,20 @@ export class TechService {
   }
 
   addTech(tech: Tech) {
-    this.techsRef.push(tech)
+    return this.techsRef.push(tech)
       .then(_ => console.log('success'))
       // .catch(err => console.log(err, 'You don\'t have access!'));
   }
 
-  updateTech(techKey: string, tech: Tech) {
-    this.techsRef.update(techKey, tech)
+  updateTech(tech: Tech) {
+    let { $key, ...val } = tech;
+    return this.techsRef.update($key, val)
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You don\'t have access!'));
   }
 
-  deleteTech(techKey: string) {
-    this.techsRef.remove(techKey)
+  deleteTech(tech: Tech) {
+    return this.techsRef.remove(tech.$key)
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You don\'t have access!'));
   }
