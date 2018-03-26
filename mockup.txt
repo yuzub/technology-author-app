@@ -1,0 +1,43 @@
+home ->
+  welcome and auth
+
+tech ->
+  name, logo, [links] = {name: string, link: string}, [tutorials]
+
+  html  csss  javascript  ... gulp  webpack
+
+tech-detail ->
+  tech.logo
+  tech.name
+  [tech.links]
+
+tech-edit ->
+
+
+author ->
+  name, photo, [authorTechs] = {name: string}, [courses] = {name: string; link: string}
+  filter by tech
+  filter by name
+
+author-edit ->
+
+
+learning ->
+  logo, name, link
+
+  mdn
+  w3school
+  javascript.ru
+  http://htmlbook.ru
+
+  Codecademy
+  codeschool
+  freeCodeCamp
+  HTML Academy
+
+  pluralsight
+  sitepoint
+  WintellectNOW
+  ...
+
+learning-edit ->

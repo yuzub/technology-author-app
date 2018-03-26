@@ -36,15 +36,35 @@ export class AuthorService {
 
   updateAuthor(author: Author) {
     let { $key, ...val } = author;
-    return this.authorsRef.update($key, val)
+    // make an object for multipath updates
+    let updateAuthor = {};
+    // path for author
+    updateAuthor[`authors/${$key}`] = val;
+    // path for a true lookup table
+    Object.keys(author.authorTechs).forEach(techKey => {
+      updateAuthor[`techAuthors/${techKey}/${$key}`] = true;
+    });
+    console.log(updateAuthor);
+
+    return this.db.object('/').update(updateAuthor)
+
+    // return this.authorsRef.update($key, val)
       .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You don\'t have access!'));
+      .catch(err => console.log(err, 'You don\'t have access!', err));
   }
 
   deleteAuthor(author: Author) {
-    return this.authorsRef.remove(author.$key)
+    let removeAuthor = {};
+    removeAuthor[`authors/${author.$key}`] = null;
+    // path for a true lookup table
+    Object.keys(author.authorTechs).forEach(techKey => {
+      removeAuthor[`techAuthors/${techKey}/${author.$key}`] = null;
+    });
+    console.log(removeAuthor);
+
+    return this.db.object('/').update(removeAuthor)
       .then(_ => console.log('success'))
-      .catch(err => console.log(err, 'You don\'t have access!'));
+      .catch(err => console.log(err, 'You don\'t have access!', err));
   }
 
 }

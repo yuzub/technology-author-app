@@ -6,7 +6,7 @@
     <input type="file" *ngIf="!isNewAuthor" (change)="uploadPhoto($event)">
   </div>
   <mat-form-field>
-    <input matInput type="text" [(ngModel)]="author.name">
+    <input matInput type="text" [(ngModel)]="author.name" placeholder="Author Name">
   </mat-form-field>
 
   <div *ngIf="!isNewAuthor">
