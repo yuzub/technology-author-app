@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database";
 import { Observable } from "rxjs/Observable";
-import { Tech } from "../tech";
+import { Tech } from "./tech";
 
 @Injectable()
 export class TechService {

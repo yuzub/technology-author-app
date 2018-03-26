@@ -1,0 +1,40 @@
+<h1>Author Edit</h1>
+<!-- <mat-card *ngIf="author$ | async as author"> -->
+<mat-card>
+  <div>
+    <img *ngIf="author.photoUrl" [src]="author.photoUrl" alt="author photo profile">
+    <input type="file" *ngIf="!isNewAuthor" (change)="uploadPhoto($event)">
+  </div>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="author.name">
+  </mat-form-field>
+
+  <div *ngIf="!isNewAuthor">
+    <!-- <mat-form-field>
+      <mat-select placeholder="Web Technologies" [(ngModel)]="author.techKey">
+        <mat-option *ngFor="let tech of techs$ | async" [value]="tech.$key">
+          {{ tech.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <mat-form-field>
+      <mat-select placeholder="Web Technologies" [(ngModel)]="selectedTech">
+        <mat-option *ngFor="let tech of techs$ | async" [value]="tech">{{ tech.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="addTech()">Add Technology</button>
+  </div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let tech of authorTechs">{{tech.name}}</mat-list-item>
+  </mat-list>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="saveAuthor(author)">Save</button>
+    <button mat-raised-button (click)="deleteAuthor(author)" color="accent">Delete</button>
+  </mat-card-actions>
+</mat-card>
+
+<br>
+<!-- {{author$ | async | json}} -->
+{{author | json}}

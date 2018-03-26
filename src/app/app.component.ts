@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
+// import 'rxjs/add/operator/take';
+import { AuthorService } from './author/author.service';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'taa-root',
@@ -11,14 +13,17 @@ import 'rxjs/add/operator/take';
 export class AppComponent {
   title = 'taa';
   connected: Observable<any>;
-  constructor(private db: AngularFireDatabase) {
+
+  constructor(private db: AngularFireDatabase, public authorService: AuthService) {
     this.connected = db.object('connected').valueChanges();
     this.connected
-      .take(2)
+      // .take(2)
       .subscribe(
-        value => console.log(`connected next - got value ${value}`),
-        error => console.log(`connected error - something wrong occurred: ${error}`),
+        value => console.log(`You have connected to ${value}`),
+        error => console.log(`Error - something wrong occurred: ${error}`),
         () => console.log(`connected completed`)
       );
+
+    
   }
 }

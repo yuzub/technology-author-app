@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { TechService } from './tech.service';
+import { TechService } from '../tech.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tech } from '../tech';
 

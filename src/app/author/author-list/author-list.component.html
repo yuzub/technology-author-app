@@ -1,0 +1,23 @@
+<div fxLayoutAlign="space-between center">
+  <h1>Authors</h1>
+  <mat-form-field>
+    <mat-select placeholder="Web Technologies" (change)="getAuthors($event.value)" [(value)]="querySelected">
+      <mat-option value="All">All</mat-option>
+      <mat-option *ngFor="let tech of techs$ | async" [value]="tech.$key">
+        {{ tech.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<mat-card *ngFor="let author of authors$ | async" fxLayoutAlign="space-between center">
+  <div>
+    <img *ngIf="author.photoUrl" [src]="author.photoUrl" alt="author photo profile" [title]="author.name">
+    <span>{{author.name}}</span>
+  </div>
+  <span>{{author | json}}</span>
+  <button mat-button [routerLink]="['/author-edit', author.$key]">Edit</button>
+</mat-card>
+<button mat-fab [routerLink]="['/author-edit/new']">
+  <mat-icon>add</mat-icon>
+</button>

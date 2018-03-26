@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TechService } from '../tech-edit/tech.service';
+import { TechService } from '../tech.service';
 import { Observable } from 'rxjs/Observable';
 import { Tech } from '../tech';
 
