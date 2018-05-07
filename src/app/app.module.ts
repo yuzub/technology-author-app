@@ -14,6 +14,7 @@ import { TechListComponent } from './tech/tech-list/tech-list.component';
 
 import { AuthorEditComponent } from './author/author-edit/author-edit.component';
 import { AuthorListComponent } from './author/author-list/author-list.component';
+
 import { HomeComponent } from './home/home.component';
 
 import { TechService } from './tech/tech.service';

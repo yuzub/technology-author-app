@@ -1,8 +1,14 @@
 <h1>Technology Edit</h1>
 <mat-card *ngIf="tech$ | async as tech">
-  <mat-form-field>
-    <input matInput type="text" [(ngModel)]="tech.name">
-  </mat-form-field>
+  <form class="tech-edit-form">
+    <!-- <mat-form-field>
+      <input matInput type="text" [(ngModel)]="tech.name">
+    </mat-form-field> -->
+    <mat-form-field class="tech-edit-full-width">
+      <input matInput placeholder="Name" [(ngModel)]="tech.name" name="techName">
+    </mat-form-field>
+  </form>
+
   <mat-card-actions>
     <button mat-raised-button (click)="saveTech(tech)">Save</button>
     <button mat-raised-button (click)="deleteTech(tech)" color="accent">Delete</button>

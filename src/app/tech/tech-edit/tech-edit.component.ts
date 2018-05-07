@@ -13,7 +13,7 @@ import { Tech } from '../tech';
 export class TechEditComponent implements OnInit {
   isNewTech: boolean;
   techKey: string;
-  tech$: Observable<any>;
+  tech$: Observable<Tech>;
 
   constructor(
     private router: Router,
@@ -25,7 +25,7 @@ export class TechEditComponent implements OnInit {
   ngOnInit() {
     this.techKey = this.activatedRoute.snapshot.params['id'];
     this.isNewTech = this.techKey === 'new';
-    !this.isNewTech ? this.getTech() : this.tech$ = Observable.of({}) as Observable<Tech>
+    !this.isNewTech ? this.getTech() : this.tech$ = Observable.of({}) as Observable<Tech>;
   }
 
   getTech() {

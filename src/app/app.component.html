@@ -1,5 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="mat-app-background">
+
   <mat-toolbar color="primary" class="toolbar">
     <div fxLayoutAlign="space-between center" class="nav-buttons-bar">
       <button mat-button [routerLink]="['/home']">Web Technologies</button>
@@ -12,11 +12,12 @@
         <button mat-button (click)="authorService.logout()">Logout</button>
       </div>
     </div>
-
   </mat-toolbar>
+
   <div>
     <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
       <router-outlet></router-outlet>
     </div>
   </div>
+  
 </div>

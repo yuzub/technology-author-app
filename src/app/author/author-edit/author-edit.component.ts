@@ -17,7 +17,7 @@ export class AuthorEditComponent implements OnInit {
   techs$: Observable<Tech[]>;
   isNewAuthor: boolean;
   authorKey: string;
-  author$: Observable<any>;
+  // author$: Observable<any>;
   author = {name: ''} as Author;
 
   selectedTech: Tech;
@@ -46,8 +46,10 @@ export class AuthorEditComponent implements OnInit {
       .then(uploadTask => this.author.photoUrl = uploadTask.downloadURL);
   }
 
+  // add selected technology to this.author.authorTechs
   addTech() {
     this.author.authorTechs[this.selectedTech.$key] = { name: this.selectedTech.name };
+    // call setAuthorTechs() to update this.author.authorTechs object to this.authorTechs array for displaying in a template
     this.setAuthorTechs();
   }
 

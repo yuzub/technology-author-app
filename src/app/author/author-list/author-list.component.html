@@ -13,7 +13,7 @@
 <mat-card *ngFor="let author of authors$ | async" fxLayoutAlign="space-between center">
   <div>
     <img *ngIf="author.photoUrl" [src]="author.photoUrl" alt="author photo profile" [title]="author.name">
-    <span>{{author.name}}</span>
+    <span>{{author?.name}}</span>
   </div>
   <span>{{author | json}}</span>
   <button mat-button [routerLink]="['/author-edit', author.$key]">Edit</button>
